@@ -33,6 +33,5 @@
             @endforeach
         </tbody>
     </table>
-    <center><a href="{{ route('mahasiswas.cetak_pdf',$mahasiswa->Nim) }}"><button class="btn btn-danger">PRINT</button></a></center>
 </div>
 @endsection
