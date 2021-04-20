@@ -6,6 +6,7 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\Mahasiswa_Matakuliah;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -46,7 +47,11 @@ class MahasiswaController extends Controller
             'Kelas' => 'required',
             'Jurusan' => 'required',
             'No_Handphone' => 'required',
+            'image' => 'required',
         ]);
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
+        }
         $Mahasiswa = new Mahasiswa;
         $Mahasiswa->nim = $request->get('Nim');
         $Mahasiswa->nama = $request->get('Nama');
@@ -54,6 +59,7 @@ class MahasiswaController extends Controller
         $Mahasiswa->jurusan = $request->get('Jurusan');
         $Mahasiswa->tanggallahir = $request->get('tanggallahir');
         $Mahasiswa->no_handphone = $request->get('No_Handphone');
+        $Mahasiswa->featured_image = $image_name;
 
         $kelas = new kelas;
         $kelas->id=$request->get('Kelas');
@@ -90,12 +96,22 @@ class MahasiswaController extends Controller
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         $Mahasiswa = Mahasiswa::with('kelas')->where('nim', $Nim)->first();
+        if ($request->file('image') != null && $Mahasiswa->featured_image && file_exists(storage_path('app/public/' . $Mahasiswa->featured_image))) {
+            Storage::delete(['public/'. $Mahasiswa->featured_image]);
+            $image_name = $request->file('image')->store('image', 'public');
+        } elseif ($request->file('image') != null) {
+            $image_name = $request->file('image')->store('image', 'public');
+        }
+        else {
+            $image_name = $Mahasiswa->featured_image;
+        }
         $Mahasiswa->nim = $request->get('Nim');
         $Mahasiswa->nama = $request->get('Nama');
         $Mahasiswa->email = $request->get('email');
         $Mahasiswa->jurusan = $request->get('Jurusan');
         $Mahasiswa->tanggallahir = $request->get('tanggallahir');
         $Mahasiswa->no_handphone = $request->get('No_Handphone');
+        $Mahasiswa->featured_image = $image_name;
 
         $kelas = new kelas;
         $kelas->id=$request->get('Kelas');

@@ -45,6 +45,7 @@
  <tr>
  <th>Nim</th>
  <th>Nama</th>
+ <th>Gambar</th>
  <th>Kelas</th>
  <th>Jurusan</th>
  <th>No_Handphone</th>
@@ -58,6 +59,7 @@
 
  <td>{{ $Mahasiswa->Nim }}</td>
  <td>{{ $Mahasiswa->Nama }}</td>
+ <td> <img width="100px" src="{{asset('storage/'.$Mahasiswa->featured_image)}}"> </td>
  <td>{{ $Mahasiswa->Kelas->nama_kelas }}</td>
  <td>{{ $Mahasiswa->Jurusan }}</td>
  <td>{{ $Mahasiswa->No_Handphone }}</td>

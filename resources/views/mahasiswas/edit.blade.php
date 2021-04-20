@@ -20,7 +20,7 @@
  </ul>
  </div>
  @endif
- <form method="post" action="{{ route('mahasiswas.update', $Mahasiswa->Nim) }}" id="myForm">
+ <form method="post" action="{{ route('mahasiswas.update', $Mahasiswa->Nim) }}" id="myForm" enctype="multipart/form-data">
  @csrf
  @method('PUT') <div class="form-group">
  <label for="Nim">Nim</label>
@@ -49,6 +49,11 @@
  <div class="form-group">
  <label for="tanggallahir">tanggallahir</label>
  <input type="date" name="tanggallahir" class="form-control" id="tanggallahir" value="{{ $Mahasiswa->tanggallahir }}" aria-describedby="tanggallahir" >
+ </div>
+ <div class="form-group">
+ <label for="image">Gambar</label>
+ <input type="file" class="form-control" name="image" value="{{$Mahasiswa->featured_image}}"></br>
+ <img width="150px" src="{{asset('storage/'.$Mahasiswa->featured_image)}}">
  </div>
  <button type="submit" class="btn btn-primary">Submit</button>
  </form>
