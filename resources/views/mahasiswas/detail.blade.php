@@ -15,6 +15,7 @@
  <li class="list-group-item"><b>No_Handphone: </b>{{$Mahasiswa->No_Handphone}}</li>
  <li class="list-group-item"><b>email: </b>{{$Mahasiswa->email}}</li>
  <li class="list-group-item"><b>tanggallahir: </b>{{$Mahasiswa->tanggallahir}}</li>
+ <li class="list-group-item"><b>Foto: </b><center><img width="100px" src="{{asset('storage/'.$Mahasiswa->featured_image)}}"></center></li>
  </ul>
  </div>
  <a class="btn btn-success mt-3" href="{{ route('mahasiswas.index') }}">Kembali</a>

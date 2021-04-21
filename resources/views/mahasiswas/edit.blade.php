@@ -53,7 +53,7 @@
  <div class="form-group">
  <label for="image">Gambar</label>
  <input type="file" class="form-control" name="image" value="{{$Mahasiswa->featured_image}}"></br>
- <img width="150px" src="{{asset('storage/'.$Mahasiswa->featured_image)}}">
+ <img width="100px" src="{{asset('storage/'.$Mahasiswa->featured_image)}}">
  </div>
  <button type="submit" class="btn btn-primary">Submit</button>
  </form>
